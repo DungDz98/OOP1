@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mobile</title>
+</head>
+<body>
+<script>
+    class Mobile {
+        constructor(energy) {
+            this.energy = energy;
+            this.textBox = '';
+            this.receiveBox = '';
+            this.sendBox = '';
+            this.status = status;
+        }
+
+        turnOn() {
+            if (this.energy > 0) {
+                this.status = true;
+            } else {
+                alert('Charge battery!')
+            }
+        }
+
+        turnOff() {
+            this.status = false;
+        }
+
+        typeText(text) {
+            if (this.status) {
+                this.textBox += text;
+                this.consume();
+            } else {
+                alert('Turn On Mobile');
+            }
+
+        }
+
+        receiveText(text) {
+            if (this.status) {
+                this.receiveBox += text;
+                this.consume();
+            } else {
+                alert('Turn On Mobile');
+            }
+        }
+
+        sendText(text, mobile) {
+            if (this.status) {
+                this.sendBox += text + "<br>";
+                this.consume();
+                if (mobile.status) {
+                    mobile.receiveText(text);
+                } else {
+                    alert('Not Send. Try Again!');
+                }
+
+            } else {
+                alert('Turn On Mobile');
+            }
+        }
+
+        checkSendBox() {
+            if (this.status) {
+                return this.sendBox;
+                this.consume();
+            } else {
+                alert('Turn On Mobile');
+            }
+        }
+
+        checkReceiveBox() {
+            if (this.status) {
+                return this.receiveBox;
+                this.consume();
+            } else {
+                alert('Turn On Mobile');
+            }
+        }
+
+        charge(minutes) {
+            for (let i = 0; i < minutes; i++) {
+                this.energy++;
+            }
+        }
+
+        consume() {
+            this.energy--;
+        }
+    }
+
+    let xiaomi = new Mobile(75);
+    let iphone = new Mobile(100);
+    let samsung = new Mobile(0);
+
+    samsung.charge(10);
+    samsung.turnOn();
+    iphone.turnOn();
+    document.write(samsung.checkSendBox() + "<br>");
+    samsung.sendText("Hello Xiaomi from Samsung Mobile", xiaomi);
+    samsung.sendText("Hello Apple", iphone);
+    document.write(samsung.checkSendBox() + "<br>");
+    document.write(samsung.energy + "<br>");
+
+    xiaomi.turnOn();
+    document.write(xiaomi.checkReceiveBox());
+
+</script>
+</body>
+</html>
