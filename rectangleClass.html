@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>rectangleClass</title>
+</head>
+<body>
+<canvas id="myCanvas" width="800" height="600">
+    <p>Your browser doesn't currently support HTML5 Canvas</p>
+</canvas>
+<script>
+    let Rectangel = function (width, height) {
+        this.width = width;
+        this.height = height;
+        this.getArea = function () {
+            return height * width;
+        }
+        this.getPerimeter = function () {
+            return (height + width) * 2;
+        }
+        this.display = function () {
+            let canvas = document.getElementById('myCanvas');
+            let pen = canvas.getContext('2d');
+            pen.beginPath();
+            pen.rect(canvas.width/2 - 50, canvas.height/2 - 25, this.width, this.height);
+            pen.fillstyle = "#ff0000";
+            pen.fill();
+            pen.closePath();
+        }
+    }
+
+    let rectangle1 = new Rectangel(100, 50);
+    rectangle1.display();
+    // document.write('<br>');
+    // document.write(rectangle1.getPerimeter());
+</script>
+</body>
+</html>

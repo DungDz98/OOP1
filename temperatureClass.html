@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TemperatureClass</title>
+</head>
+<body>
+<p id="result"></p>
+<script>
+    let result = document.getElementById('result');
+    class Temperature {
+        constructor(tempC) {
+            this.tempC = tempC;
+        }
+
+        convertCtoF() {
+            return `${this.tempC} do C = ${this.tempC * 1.8 + 32} do F`;
+        }
+
+        convertCtoK() {
+            return `${this.tempC} do C = ${this.tempC + 273} do K`;
+        }
+
+    }
+
+    let temp1 = new Temperature(30);
+    result.innerHTML = temp1.tempC;
+
+</script>
+</body>
+</html>
